@@ -1,6 +1,18 @@
 import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-school.jpg";
 
+const downloadBrochure = () => {
+  const pages = ["/brochure/brochure-page-1.jpg", "/brochure/brochure-page-2.jpg"];
+  pages.forEach((url, i) => {
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `Gokuldham-Brochure-Page-${i + 1}.jpg`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+};
+
 const HeroSection = () => (
   <section id="home" className="relative min-h-[90vh] flex items-center pt-20">
     <img src={heroImg} alt="Gokuldham International School Campus" className="absolute inset-0 w-full h-full object-cover" loading="eager" />
@@ -25,9 +37,9 @@ const HeroSection = () => (
           <a href="#admissions" className="inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold gradient-primary text-primary-foreground shadow-lg hover:opacity-90 transition-opacity text-sm md:text-base">
             Apply for Admission
           </a>
-          <a href="#contact" className="inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold border-2 border-primary-foreground/60 text-primary-foreground hover:bg-primary-foreground/10 transition-colors text-sm md:text-base">
+          <button onClick={downloadBrochure} className="inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold border-2 border-primary-foreground/60 text-primary-foreground hover:bg-primary-foreground/10 transition-colors text-sm md:text-base cursor-pointer">
             Download Brochure
-          </a>
+          </button>
         </div>
       </motion.div>
     </div>
