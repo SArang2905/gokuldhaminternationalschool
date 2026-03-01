@@ -39,7 +39,7 @@ const ContactSection = () => (
             <Mail className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
             <div>
               <h4 className="font-semibold text-foreground">Email</h4>
-              <a href="mailto:info@gokuldhamschool.in" className="text-sm text-muted-foreground hover:text-primary transition-colors">info@gokuldhamschool.in</a>
+              <a href="mailto:gokuldhaminternationalschool6@gmail.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">gokuldhaminternationalschool6@gmail.com</a>
             </div>
           </div>
           <div className="flex gap-4">
