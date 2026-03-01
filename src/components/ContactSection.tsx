@@ -59,7 +59,7 @@ const ContactSection = () => (
         >
           <iframe
             title="School Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.123!2d77.3!3d19.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA5JzAwLjAiTiA3N8KwMTgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1883!2d77.278785!3d19.248369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
             width="100%"
             height="100%"
             style={{ border: 0 }}
