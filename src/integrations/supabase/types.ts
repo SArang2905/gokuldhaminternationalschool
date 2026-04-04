@@ -14,7 +14,155 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      social_accounts: {
+        Row: {
+          access_token: string
+          account_id: string
+          account_name: string | null
+          created_at: string
+          id: string
+          is_active: boolean
+          platform: Database["public"]["Enums"]["social_platform"]
+          token_expires_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          access_token: string
+          account_id: string
+          account_name?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          platform: Database["public"]["Enums"]["social_platform"]
+          token_expires_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          access_token?: string
+          account_id?: string
+          account_name?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          platform?: Database["public"]["Enums"]["social_platform"]
+          token_expires_at?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      social_feed_settings: {
+        Row: {
+          created_at: string
+          id: string
+          is_feed_enabled: boolean
+          max_posts_displayed: number
+          sync_interval_minutes: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_feed_enabled?: boolean
+          max_posts_displayed?: number
+          sync_interval_minutes?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_feed_enabled?: boolean
+          max_posts_displayed?: number
+          sync_interval_minutes?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      social_posts: {
+        Row: {
+          account_id: string
+          caption: string | null
+          created_at: string
+          id: string
+          is_visible: boolean
+          likes_count: number | null
+          media_type: Database["public"]["Enums"]["social_media_type"]
+          media_url: string
+          permalink: string | null
+          platform: Database["public"]["Enums"]["social_platform"]
+          platform_post_id: string
+          posted_at: string
+          thumbnail_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          account_id: string
+          caption?: string | null
+          created_at?: string
+          id?: string
+          is_visible?: boolean
+          likes_count?: number | null
+          media_type?: Database["public"]["Enums"]["social_media_type"]
+          media_url: string
+          permalink?: string | null
+          platform: Database["public"]["Enums"]["social_platform"]
+          platform_post_id: string
+          posted_at: string
+          thumbnail_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          account_id?: string
+          caption?: string | null
+          created_at?: string
+          id?: string
+          is_visible?: boolean
+          likes_count?: number | null
+          media_type?: Database["public"]["Enums"]["social_media_type"]
+          media_url?: string
+          permalink?: string | null
+          platform?: Database["public"]["Enums"]["social_platform"]
+          platform_post_id?: string
+          posted_at?: string
+          thumbnail_url?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "social_posts_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "social_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      social_sync_log: {
+        Row: {
+          error_message: string | null
+          id: string
+          platform: Database["public"]["Enums"]["social_platform"]
+          posts_fetched: number | null
+          status: string
+          synced_at: string
+        }
+        Insert: {
+          error_message?: string | null
+          id?: string
+          platform: Database["public"]["Enums"]["social_platform"]
+          posts_fetched?: number | null
+          status?: string
+          synced_at?: string
+        }
+        Update: {
+          error_message?: string | null
+          id?: string
+          platform?: Database["public"]["Enums"]["social_platform"]
+          posts_fetched?: number | null
+          status?: string
+          synced_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +171,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      social_media_type: "photo" | "video" | "album"
+      social_platform: "instagram" | "facebook"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +299,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      social_media_type: ["photo", "video", "album"],
+      social_platform: ["instagram", "facebook"],
+    },
   },
 } as const
