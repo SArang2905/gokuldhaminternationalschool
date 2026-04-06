@@ -32,7 +32,7 @@ const ContactSection = () => (
             <Phone className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
             <div>
               <h4 className="font-semibold text-foreground">Phone</h4>
-              <a href="tel:+919822412661" className="text-sm text-muted-foreground hover:text-primary transition-colors">+91 9822412661</a>
+              <a href="tel:+919226628083" className="text-sm text-muted-foreground hover:text-primary transition-colors">+91 9226628083</a>
             </div>
           </div>
           <div className="flex gap-4">
