@@ -7,7 +7,7 @@ import {
 const features = [
   {
     icon: TreePine,
-    title: "Green & Spacious Campus",
+    title: "Nature-friendly & Spacious Campus",
     points: ["Lush 3-Acre Campus", "Peaceful, safe & inspiring environment", "Fully ventilated & spacious building"],
   },
   {
