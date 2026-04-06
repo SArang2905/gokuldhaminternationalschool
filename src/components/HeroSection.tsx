@@ -31,7 +31,7 @@ const HeroSection = () => (
           Shaping Bright Minds for a Brighter Tomorrow
         </h1>
         <p className="text-base md:text-lg text-primary-foreground/90 mb-8 max-w-xl">
-          Admissions Open 2026–27 | LKG to Grade 6 | Limited Seats
+          Admissions Open 2026–27 | LKG to Grade 12 | Limited Seats
         </p>
         <div className="flex flex-wrap gap-4">
           <a href="#admissions" className="inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold gradient-primary text-primary-foreground shadow-lg hover:opacity-90 transition-opacity text-sm md:text-base">
