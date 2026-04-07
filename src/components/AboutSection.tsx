@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { MapPin, Quote, GraduationCap, Award, Briefcase } from "lucide-react";
+import { MapPin, Quote, GraduationCap, Briefcase } from "lucide-react";
+import presidentImg from "@/assets/president.jpeg";
 
 const leaders = [
   {
