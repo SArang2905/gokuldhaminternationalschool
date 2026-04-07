@@ -22,7 +22,7 @@ const leaders = [
   {
     name: "Girish Ganesh Jadhav",
     role: "Vice President",
-    icon: Briefcase,
+    image: vpImg,
     description:
       "A forward-thinking leader with a strong background in technology and economics, he is a highly qualified professional with a Master's in Computer Application and over 10 years of experience in the banking industry. As a seasoned Economist and Branch Manager in Bank, he has honed his leadership and management skills, successfully leading teams and driving growth. His vision is to create a learning environment that fosters innovation, creativity, and academic excellence, empowering students to succeed in an ever-changing world.",
   },
