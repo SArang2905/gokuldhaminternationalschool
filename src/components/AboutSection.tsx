@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { MapPin, Quote, GraduationCap, Briefcase } from "lucide-react";
+import { MapPin, Quote } from "lucide-react";
 import presidentImg from "@/assets/president.jpeg";
 import principalImg from "@/assets/principal.jpeg";
+import vpImg from "@/assets/vicepresident.jpeg";
 
 const leaders = [
   {
@@ -21,7 +22,7 @@ const leaders = [
   {
     name: "Girish Ganesh Jadhav",
     role: "Vice President",
-    icon: Briefcase,
+    image: vpImg,
     description:
       "A forward-thinking leader with a strong background in technology and economics, he is a highly qualified professional with a Master's in Computer Application and over 10 years of experience in the banking industry. As a seasoned Economist and Branch Manager in Bank, he has honed his leadership and management skills, successfully leading teams and driving growth. His vision is to create a learning environment that fosters innovation, creativity, and academic excellence, empowering students to succeed in an ever-changing world.",
   },
@@ -80,11 +81,9 @@ const AboutSection = () => (
               className="bg-card rounded-xl p-6 shadow-md border text-center flex flex-col items-center"
             >
               <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
-                {"image" in leader && leader.image ? (
+                {"image" in leader ? (
                   <img src={leader.image} alt={leader.name} className="w-full h-full object-cover" />
-                ) : (
-                  <leader.icon className="w-10 h-10 text-primary" />
-                )}
+                ) : null}
               </div>
               <h4 className="text-lg font-bold text-secondary">{leader.name}</h4>
               <p className="text-sm font-semibold text-primary mb-3">{leader.role}</p>
