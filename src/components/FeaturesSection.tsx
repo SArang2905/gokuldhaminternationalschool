@@ -18,7 +18,7 @@ const features = [
   {
     icon: IndianRupee,
     title: "Affordable Quality Education",
-    points: ["Transparent & affordable fee structure", "Budget-friendly learning", "Best education within every family's reach"],
+    points: ["Transparent & affordable fee structure", "Best education within every family's reach"],
   },
   {
     icon: Users,
