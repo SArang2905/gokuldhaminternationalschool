@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { MapPin, Quote, GraduationCap, Award, Briefcase } from "lucide-react";
+import { MapPin, Quote, GraduationCap, Briefcase } from "lucide-react";
+import presidentImg from "@/assets/president.jpeg";
 
 const leaders = [
   {
     name: "Dr. Devdatt Deshpande",
     role: "President",
-    icon: Award,
+    image: presidentImg,
     description:
       "A visionary leader and accomplished academician, Dr. Devdatt Deshpande brings a rich blend of experience in education, journalism, and administration. With a Ph.D. in Mass Communication and decades of professional expertise, he has made significant contributions to academic and social development in Nanded. Carrying forward the proud legacy of serving the education sector inspired by his father, Mr. B. G. Deshpande, he is deeply committed to shaping the future of young minds. As the President of Gokuldham International School, his mission is to build world-class infrastructure and provide high-quality education at an affordable cost, ensuring that no child is deprived of the best learning opportunities and facilities.",
   },
@@ -77,8 +78,12 @@ const AboutSection = () => (
               transition={{ delay: i * 0.15 }}
               className="bg-card rounded-xl p-6 shadow-md border text-center flex flex-col items-center"
             >
-              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <leader.icon className="w-10 h-10 text-primary" />
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
+                {"image" in leader && leader.image ? (
+                  <img src={leader.image} alt={leader.name} className="w-full h-full object-cover" />
+                ) : (
+                  <leader.icon className="w-10 h-10 text-primary" />
+                )}
               </div>
               <h4 className="text-lg font-bold text-secondary">{leader.name}</h4>
               <p className="text-sm font-semibold text-primary mb-3">{leader.role}</p>
