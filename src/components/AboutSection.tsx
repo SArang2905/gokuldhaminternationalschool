@@ -78,8 +78,12 @@ const AboutSection = () => (
               transition={{ delay: i * 0.15 }}
               className="bg-card rounded-xl p-6 shadow-md border text-center flex flex-col items-center"
             >
-              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <leader.icon className="w-10 h-10 text-primary" />
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
+                {"image" in leader && leader.image ? (
+                  <img src={leader.image} alt={leader.name} className="w-full h-full object-cover" />
+                ) : (
+                  <leader.icon className="w-10 h-10 text-primary" />
+                )}
               </div>
               <h4 className="text-lg font-bold text-secondary">{leader.name}</h4>
               <p className="text-sm font-semibold text-primary mb-3">{leader.role}</p>
