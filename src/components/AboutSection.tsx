@@ -6,7 +6,7 @@ const leaders = [
   {
     name: "Dr. Devdatt Deshpande",
     role: "President",
-    icon: Award,
+    image: presidentImg,
     description:
       "A visionary leader and accomplished academician, Dr. Devdatt Deshpande brings a rich blend of experience in education, journalism, and administration. With a Ph.D. in Mass Communication and decades of professional expertise, he has made significant contributions to academic and social development in Nanded. Carrying forward the proud legacy of serving the education sector inspired by his father, Mr. B. G. Deshpande, he is deeply committed to shaping the future of young minds. As the President of Gokuldham International School, his mission is to build world-class infrastructure and provide high-quality education at an affordable cost, ensuring that no child is deprived of the best learning opportunities and facilities.",
   },
