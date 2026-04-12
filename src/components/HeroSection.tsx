@@ -2,15 +2,12 @@ import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-school.jpg";
 
 const downloadBrochure = () => {
-  const pages = ["/brochure/brochure-page-1.jpg", "/brochure/brochure-page-2.jpg"];
-  pages.forEach((url, i) => {
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `Gokuldham-Brochure-Page-${i + 1}.jpg`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  });
+  const a = document.createElement("a");
+  a.href = "/brochure/Gokuldham_International_School.pdf";
+  a.download = "Gokuldham_International_School.pdf";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 };
 
 const HeroSection = () => (
