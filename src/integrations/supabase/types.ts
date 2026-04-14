@@ -165,7 +165,15 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      social_sync_status: {
+        Row: {
+          platform: Database["public"]["Enums"]["social_platform"] | null
+          posts_fetched: number | null
+          status: string | null
+          synced_at: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
