@@ -73,7 +73,9 @@ Deno.serve(async (req) => {
           posts_fetched: posts.length,
         });
       } catch (err) {
-        const errorMsg = err instanceof Error ? err.message : "Unknown error";
+        const rawMsg = err instanceof Error ? err.message : "Unknown error";
+        // Sanitize error message to avoid leaking API details
+        const errorMsg = rawMsg.includes("API error") ? "External API request failed" : rawMsg.substring(0, 100);
         await supabase.from("social_sync_log").insert({
           platform: account.platform,
           status: "error",
