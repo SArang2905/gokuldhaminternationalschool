@@ -20,7 +20,7 @@ const AdmissionsSection = () => {
     };
 
     try {
-      const res = await fetch("https://formspree.io/f/xvzdqegp", {
+      const res = await fetch("https://formspree.io/f/mjgjonrg", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(formData),
