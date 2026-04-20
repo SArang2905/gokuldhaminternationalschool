@@ -1,11 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-
-const grades = ["LKG", "UKG", "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6"];
-const sources = ["Word of mouth", "Pamphlet/Brochure", "Social Media", "Other"];
 
 const AdmissionsSection = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -17,19 +13,20 @@ const AdmissionsSection = () => {
 
     const form = e.target as HTMLFormElement;
     const formData = {
-      parentName: (form.elements.namedItem("parentName") as HTMLInputElement).value.trim(),
-      mobile: (form.elements.namedItem("mobile") as HTMLInputElement).value.trim(),
-      studentName: (form.elements.namedItem("studentName") as HTMLInputElement).value.trim(),
-      grade: (form.elements.namedItem("grade") as HTMLSelectElement).value,
-      source: (form.elements.namedItem("source") as HTMLSelectElement).value,
+      fullName: (form.elements.namedItem("fullName") as HTMLInputElement).value.trim(),
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim(),
+      email: (form.elements.namedItem("email") as HTMLInputElement).value.trim(),
+      callbackTime: (form.elements.namedItem("callbackTime") as HTMLInputElement).value.trim(),
     };
 
     try {
-      const { data, error } = await supabase.functions.invoke("submit-inquiry", {
-        body: formData,
+      const res = await fetch("https://formspree.io/f/xvzdqegp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(formData),
       });
 
-      if (error) throw error;
+      if (!res.ok) throw new Error("Submission failed");
       setSubmitted(true);
     } catch (err) {
       console.error("Submission error:", err);
@@ -66,36 +63,26 @@ const AdmissionsSection = () => {
             {submitted ? (
               <div className="text-center py-8">
                 <CheckCircle2 className="w-16 h-16 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-foreground mb-2">Thank You!</h3>
-                <p className="text-muted-foreground">Our admissions team will contact you within 24 hours.</p>
+                <h3 className="text-xl font-bold text-foreground mb-2">Thank you!</h3>
+                <p className="text-muted-foreground">We will call you back soon.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Parent's Full Name</label>
-                  <input name="parentName" required type="text" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                  <label className="block text-sm font-medium text-foreground mb-1">Full Name</label>
+                  <input name="fullName" required type="text" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Mobile Number</label>
-                  <input name="mobile" required type="tel" pattern="[0-9]{10}" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder="10-digit mobile number" />
+                  <label className="block text-sm font-medium text-foreground mb-1">Phone Number</label>
+                  <input name="phone" required type="tel" pattern="[0-9]{10}" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder="10-digit mobile number" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Student's Name</label>
-                  <input name="studentName" required type="text" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                  <label className="block text-sm font-medium text-foreground mb-1">Email Address</label>
+                  <input name="email" required type="email" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Grade Applying For</label>
-                  <select name="grade" required className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
-                    <option value="">Select Grade</option>
-                    {grades.map((g) => <option key={g} value={g}>{g}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">How did you hear about us?</label>
-                  <select name="source" required className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
-                    <option value="">Select</option>
-                    {sources.map((s) => <option key={s} value={s}>{s}</option>)}
-                  </select>
+                  <label className="block text-sm font-medium text-foreground mb-1">Preferred Callback Time</label>
+                  <input name="callbackTime" required type="text" placeholder="e.g. Weekdays 4–6 PM" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
                 </div>
                 <button
                   type="submit"
