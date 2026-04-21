@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { Tables } from "@/integrations/supabase/types";
+import campusVideo from "@/assets/gokuldham-aerial.mp4";
 
 type SocialPost = Tables<"social_posts">;
 
@@ -93,6 +94,24 @@ const SocialFeedSection = () => {
               <RefreshCw className="w-3 h-3" /> Last synced: {timeSince(lastSync)}
             </p>
           )}
+        </motion.div>
+
+        {/* Featured campus video */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto mb-10 rounded-2xl overflow-hidden shadow-lg border bg-card"
+        >
+          <video
+            src={campusVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls
+            className="w-full h-auto object-cover"
+          />
         </motion.div>
 
         {/* Filter tabs */}
