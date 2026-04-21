@@ -18,6 +18,7 @@ const AdmissionsSection = () => {
       phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim(),
       email: (form.elements.namedItem("email") as HTMLInputElement).value.trim(),
       callbackTime: (form.elements.namedItem("callbackTime") as HTMLInputElement).value.trim(),
+      heardFrom: (form.elements.namedItem("heardFrom") as HTMLSelectElement).value.trim(),
     };
 
     try {
@@ -88,6 +89,18 @@ const AdmissionsSection = () => {
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">Preferred Callback Time</label>
                   <input name="callbackTime" required type="text" placeholder="e.g. Weekdays 4–6 PM" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1">Where did you hear about us?</label>
+                  <select name="heardFrom" required defaultValue="" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
+                    <option value="" disabled>Select an option</option>
+                    <option value="Google Search">Google Search</option>
+                    <option value="Social Media">Social Media (Instagram/Facebook)</option>
+                    <option value="Friend/Family Referral">Friend/Family Referral</option>
+                    <option value="Newspaper/Advertisement">Newspaper/Advertisement</option>
+                    <option value="School Event">School Event</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
                 <button
                   type="submit"
