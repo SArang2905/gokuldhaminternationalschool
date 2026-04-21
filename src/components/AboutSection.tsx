@@ -21,7 +21,7 @@ const leaders = [
   },
   {
     name: "Mrs. Raminder Kaur Modi",
-    role: "Principal",
+    role: "Director Principal",
     image: principalImg,
     description:
       "Mrs. Raminder Kaur Modi is a visionary educationist with over 20 years of experience in school education. Having worked across India, she brings rich leadership experience in CBSE and ICSE schools, delivering proven academic and institutional excellence. She has been honoured with several national awards, and her work has also received international recognition. Under her leadership, Gokuldham International School, Nanded is committed to providing high-quality, value-based education that nurtures confident, capable and future-ready students.",
