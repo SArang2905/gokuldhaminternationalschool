@@ -141,9 +141,7 @@ const SocialFeedSection = () => {
               <Instagram className="w-8 h-8 text-primary" />
             </div>
             <p className="text-muted-foreground mb-2">Social feed coming soon!</p>
-            <p className="text-sm text-muted-foreground">
-              Once connected, posts from Instagram and Facebook will appear here automatically.
-            </p>
+            <p className="text-sm text-muted-foreground" />
           </div>
         )}
 
