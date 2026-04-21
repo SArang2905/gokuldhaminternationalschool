@@ -14,6 +14,7 @@ const AdmissionsSection = () => {
     const form = e.target as HTMLFormElement;
     const formData = {
       fullName: (form.elements.namedItem("fullName") as HTMLInputElement).value.trim(),
+      studentName: (form.elements.namedItem("studentName") as HTMLInputElement).value.trim(),
       phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim(),
       email: (form.elements.namedItem("email") as HTMLInputElement).value.trim(),
       callbackTime: (form.elements.namedItem("callbackTime") as HTMLInputElement).value.trim(),
@@ -71,6 +72,10 @@ const AdmissionsSection = () => {
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">Full Name</label>
                   <input name="fullName" required type="text" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1">Student's Name</label>
+                  <input name="studentName" required type="text" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">Phone Number</label>
