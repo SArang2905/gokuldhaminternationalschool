@@ -1,7 +1,14 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -10,6 +17,25 @@ const navLinks = [
   { label: "Admissions", href: "#admissions" },
   { label: "Contact", href: "#contact" },
 ];
+
+const LanguageSelector = ({ className = "" }: { className?: string }) => {
+  const [lang, setLang] = useState("en");
+  return (
+    <div className={`flex items-center gap-1.5 ${className}`}>
+      <Globe size={16} className="text-foreground/70" />
+      <Select value={lang} onValueChange={setLang}>
+        <SelectTrigger className="h-9 w-[110px] text-xs font-medium border-border/60">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent className="bg-background z-50">
+          <SelectItem value="en">English</SelectItem>
+          <SelectItem value="hi">हिन्दी</SelectItem>
+          <SelectItem value="mr">मराठी</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+};
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -35,12 +61,16 @@ const Navbar = () => {
           <a href="#admissions" className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold gradient-primary text-primary-foreground shadow hover:opacity-90 transition-opacity">
             Apply Now
           </a>
+          <LanguageSelector />
         </div>
 
-        {/* Mobile toggle */}
-        <button className="md:hidden p-2 text-foreground" onClick={() => setOpen(!open)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile right side */}
+        <div className="md:hidden flex items-center gap-2">
+          <LanguageSelector />
+          <button className="p-2 text-foreground" onClick={() => setOpen(!open)}>
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
