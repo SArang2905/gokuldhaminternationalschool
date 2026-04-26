@@ -7,6 +7,7 @@ import AdmissionsSection from "@/components/AdmissionsSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import ContactSection from "@/components/ContactSection";
 import SocialFeedSection from "@/components/SocialFeedSection";
+import LeadershipSection from "@/components/LeadershipSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
@@ -21,6 +22,7 @@ const Index = () => (
       <AdmissionsSection />
       <TestimonialSection />
       <SocialFeedSection />
+      <LeadershipSection />
       <ContactSection />
     </main>
     <Footer />
