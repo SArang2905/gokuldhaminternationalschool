@@ -251,7 +251,7 @@ const SocialFeedSection = () => {
               className="gap-2"
             >
               <Loader2 className="w-4 h-4" />
-              Load More
+              {t("social.loadMore")}
             </Button>
           </div>
         )}
@@ -295,7 +295,7 @@ const SocialFeedSection = () => {
                 )}
                 {selectedPost.likes_count != null && (
                   <p className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <Heart className="w-4 h-4" /> {selectedPost.likes_count} likes
+                    <Heart className="w-4 h-4" /> {selectedPost.likes_count} {t("social.likes")}
                   </p>
                 )}
                 {selectedPost.permalink && (
@@ -305,7 +305,7 @@ const SocialFeedSection = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-auto"
                   >
-                    <ExternalLink className="w-4 h-4" /> View original post
+                    <ExternalLink className="w-4 h-4" /> {t("social.viewOriginal")}
                   </a>
                 )}
               </div>
