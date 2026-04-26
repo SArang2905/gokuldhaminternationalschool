@@ -33,40 +33,6 @@ const AboutSection = () => (
         </div>
       </motion.div>
 
-      {/* Leadership Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mt-16 md:mt-24"
-      >
-        <h3 className="text-xl md:text-3xl font-bold text-secondary text-center mb-12">
-          Our Leadership
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {leaders.map((leader, i) => (
-            <motion.div
-              key={leader.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="bg-card rounded-xl p-6 shadow-md border text-center flex flex-col items-center"
-            >
-              <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center mb-4 overflow-hidden">
-                {"image" in leader ? (
-                  <img src={leader.image} alt={leader.name} className="w-full h-full object-cover" />
-                ) : null}
-              </div>
-              <h4 className="text-lg font-bold text-secondary">{leader.name}</h4>
-              <p className="text-sm font-semibold text-primary mb-3">{leader.role}</p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {leader.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
     </div>
   </section>
 );
