@@ -85,15 +85,14 @@ const SocialFeedSection = () => {
           className="text-center mb-10"
         >
           <h2 className="text-2xl md:text-4xl font-bold text-secondary mb-3">
-            Follow Our Journey
+            {t("social.title")}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Stay updated with the latest from our Instagram and Facebook — events,
-            achievements, and campus life.
+            {t("social.subtitle")}
           </p>
           {lastSync && (
             <p className="text-xs text-muted-foreground mt-2 flex items-center justify-center gap-1">
-              <RefreshCw className="w-3 h-3" /> Last synced: {timeSince(lastSync)}
+              <RefreshCw className="w-3 h-3" /> {t("social.lastSync")} {timeSince(lastSync)}
             </p>
           )}
         </motion.div>
@@ -150,7 +149,7 @@ const SocialFeedSection = () => {
         {error && !isLoading && (
           <div className="text-center py-16">
             <p className="text-muted-foreground">
-              Unable to load social feed right now. Please check back later.
+              {t("social.error")}
             </p>
           </div>
         )}
@@ -161,7 +160,7 @@ const SocialFeedSection = () => {
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Instagram className="w-8 h-8 text-primary" />
             </div>
-            <p className="text-muted-foreground mb-2">Social feed coming soon!</p>
+            <p className="text-muted-foreground mb-2">{t("social.empty")}</p>
             <p className="text-sm text-muted-foreground" />
           </div>
         )}
