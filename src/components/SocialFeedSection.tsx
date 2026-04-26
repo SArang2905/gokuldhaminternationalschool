@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Instagram, Facebook, Image, Video, X, Heart, ExternalLink, RefreshCw, Loader2 } from "lucide-react";
+import { Instagram, Facebook, Image, Video, Heart, ExternalLink, RefreshCw, Loader2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -11,20 +12,21 @@ import campusVideo from "@/assets/gokuldham-aerial.mp4";
 
 type SocialPost = Tables<"social_posts">;
 
-const filterTabs = [
-  { key: "all", label: "All", icon: null },
-  { key: "instagram", label: "Instagram", icon: Instagram },
-  { key: "facebook", label: "Facebook", icon: Facebook },
-  { key: "photo", label: "Photos", icon: Image },
-  { key: "video", label: "Videos", icon: Video },
-] as const;
-
-type FilterKey = (typeof filterTabs)[number]["key"];
+type FilterKey = "all" | "instagram" | "facebook" | "photo" | "video";
 
 const SocialFeedSection = () => {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
   const [selectedPost, setSelectedPost] = useState<SocialPost | null>(null);
   const [visibleCount, setVisibleCount] = useState(12);
+
+  const filterTabs: { key: FilterKey; label: string; icon: typeof Instagram | null }[] = [
+    { key: "all", label: t("social.filters.all"), icon: null },
+    { key: "instagram", label: t("social.filters.instagram"), icon: Instagram },
+    { key: "facebook", label: t("social.filters.facebook"), icon: Facebook },
+    { key: "photo", label: t("social.filters.photos"), icon: Image },
+    { key: "video", label: t("social.filters.videos"), icon: Video },
+  ];
 
   const { data: posts = [], isLoading, error } = useQuery({
     queryKey: ["social-posts"],
@@ -83,15 +85,14 @@ const SocialFeedSection = () => {
           className="text-center mb-10"
         >
           <h2 className="text-2xl md:text-4xl font-bold text-secondary mb-3">
-            Follow Our Journey
+            {t("social.title")}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Stay updated with the latest from our Instagram and Facebook — events,
-            achievements, and campus life.
+            {t("social.subtitle")}
           </p>
           {lastSync && (
             <p className="text-xs text-muted-foreground mt-2 flex items-center justify-center gap-1">
-              <RefreshCw className="w-3 h-3" /> Last synced: {timeSince(lastSync)}
+              <RefreshCw className="w-3 h-3" /> {t("social.lastSync")} {timeSince(lastSync)}
             </p>
           )}
         </motion.div>
@@ -148,7 +149,7 @@ const SocialFeedSection = () => {
         {error && !isLoading && (
           <div className="text-center py-16">
             <p className="text-muted-foreground">
-              Unable to load social feed right now. Please check back later.
+              {t("social.error")}
             </p>
           </div>
         )}
@@ -159,7 +160,7 @@ const SocialFeedSection = () => {
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Instagram className="w-8 h-8 text-primary" />
             </div>
-            <p className="text-muted-foreground mb-2">Social feed coming soon!</p>
+            <p className="text-muted-foreground mb-2">{t("social.empty")}</p>
             <p className="text-sm text-muted-foreground" />
           </div>
         )}
@@ -250,7 +251,7 @@ const SocialFeedSection = () => {
               className="gap-2"
             >
               <Loader2 className="w-4 h-4" />
-              Load More
+              {t("social.loadMore")}
             </Button>
           </div>
         )}
@@ -294,7 +295,7 @@ const SocialFeedSection = () => {
                 )}
                 {selectedPost.likes_count != null && (
                   <p className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <Heart className="w-4 h-4" /> {selectedPost.likes_count} likes
+                    <Heart className="w-4 h-4" /> {selectedPost.likes_count} {t("social.likes")}
                   </p>
                 )}
                 {selectedPost.permalink && (
@@ -304,7 +305,7 @@ const SocialFeedSection = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-auto"
                   >
-                    <ExternalLink className="w-4 h-4" /> View original post
+                    <ExternalLink className="w-4 h-4" /> {t("social.viewOriginal")}
                   </a>
                 )}
               </div>

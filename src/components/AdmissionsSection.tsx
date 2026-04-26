@@ -1,9 +1,11 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 const AdmissionsSection = () => {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +34,7 @@ const AdmissionsSection = () => {
       setSubmitted(true);
     } catch (err) {
       console.error("Submission error:", err);
-      toast.error("Something went wrong. Please try again or call us directly.");
+      toast.error(t("admissions.error"));
     } finally {
       setLoading(false);
     }
@@ -47,10 +49,8 @@ const AdmissionsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-secondary mb-3">Admissions Open 2026–27</h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Currently enrolling students for LKG to Grade 6. Limited seats available. Secure your child's future today.
-          </p>
+          <h2 className="text-2xl md:text-4xl font-bold text-secondary mb-3">{t("admissions.title")}</h2>
+          <p className="text-muted-foreground max-w-lg mx-auto">{t("admissions.subtitle")}</p>
         </motion.div>
 
         <motion.div
@@ -65,41 +65,41 @@ const AdmissionsSection = () => {
             {submitted ? (
               <div className="text-center py-8">
                 <CheckCircle2 className="w-16 h-16 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-foreground mb-2">Thank you!</h3>
-                <p className="text-muted-foreground">We will call you back soon.</p>
+                <h3 className="text-xl font-bold text-foreground mb-2">{t("admissions.thanks")}</h3>
+                <p className="text-muted-foreground">{t("admissions.callBack")}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Parent's Name</label>
+                  <label className="block text-sm font-medium text-foreground mb-1">{t("admissions.parentName")}</label>
                   <input name="fullName" required type="text" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Student's Full Name</label>
+                  <label className="block text-sm font-medium text-foreground mb-1">{t("admissions.studentName")}</label>
                   <input name="studentName" required type="text" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Phone Number</label>
-                  <input name="phone" required type="tel" pattern="[0-9]{10}" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder="10-digit mobile number" />
+                  <label className="block text-sm font-medium text-foreground mb-1">{t("admissions.phone")}</label>
+                  <input name="phone" required type="tel" pattern="[0-9]{10}" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder={t("admissions.phonePlaceholder")} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Email Address</label>
+                  <label className="block text-sm font-medium text-foreground mb-1">{t("admissions.email")}</label>
                   <input name="email" required type="email" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Preferred Callback Time</label>
-                  <input name="callbackTime" required type="text" placeholder="e.g. Weekdays 4–6 PM" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                  <label className="block text-sm font-medium text-foreground mb-1">{t("admissions.callbackTime")}</label>
+                  <input name="callbackTime" required type="text" placeholder={t("admissions.callbackPlaceholder")} className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Where did you hear about us?</label>
+                  <label className="block text-sm font-medium text-foreground mb-1">{t("admissions.heardFrom")}</label>
                   <select name="heardFrom" required defaultValue="" className="w-full rounded-lg border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
-                    <option value="" disabled>Select an option</option>
-                    <option value="Google Search">Google Search</option>
-                    <option value="Social Media">Social Media (Instagram/Facebook)</option>
-                    <option value="Friend/Family Referral">Friend/Family Referral</option>
-                    <option value="Newspaper/Advertisement">Newspaper/Advertisement</option>
-                    <option value="School Event">School Event</option>
-                    <option value="Other">Other</option>
+                    <option value="" disabled>{t("admissions.selectOption")}</option>
+                    <option value="Google Search">{t("admissions.sources.google")}</option>
+                    <option value="Social Media">{t("admissions.sources.social")}</option>
+                    <option value="Friend/Family Referral">{t("admissions.sources.referral")}</option>
+                    <option value="Newspaper/Advertisement">{t("admissions.sources.news")}</option>
+                    <option value="School Event">{t("admissions.sources.event")}</option>
+                    <option value="Other">{t("admissions.sources.other")}</option>
                   </select>
                 </div>
                 <button
@@ -108,7 +108,7 @@ const AdmissionsSection = () => {
                   className="w-full rounded-lg py-3 font-semibold gradient-primary text-primary-foreground shadow-lg hover:opacity-90 transition-opacity mt-2 disabled:opacity-60 flex items-center justify-center gap-2"
                 >
                   {loading && <Loader2 className="w-4 h-4 animate-spin" />}
-                  {loading ? "Submitting..." : "Request a Callback"}
+                  {loading ? t("admissions.submitting") : t("admissions.submit")}
                 </button>
               </form>
             )}

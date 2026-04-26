@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import logo from "@/assets/logo.png";
 import {
   Select,
@@ -10,20 +11,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Features", href: "#features" },
-  { label: "Admissions", href: "#admissions" },
-  { label: "Contact", href: "#contact" },
-];
-
 const LanguageSelector = ({ className = "" }: { className?: string }) => {
-  const [lang, setLang] = useState("en");
+  const { i18n } = useTranslation();
   return (
     <div className={`flex items-center gap-1.5 ${className}`}>
       <Globe size={16} className="text-foreground/70" />
-      <Select value={lang} onValueChange={setLang}>
+      <Select value={i18n.language?.split("-")[0] || "en"} onValueChange={(v) => i18n.changeLanguage(v)}>
         <SelectTrigger className="h-9 w-[110px] text-xs font-medium border-border/60">
           <SelectValue />
         </SelectTrigger>
@@ -39,6 +32,15 @@ const LanguageSelector = ({ className = "" }: { className?: string }) => {
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { label: t("nav.home"), href: "#home" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.features"), href: "#features" },
+    { label: t("nav.admissions"), href: "#admissions" },
+    { label: t("nav.contact"), href: "#contact" },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b shadow-sm">
@@ -59,7 +61,7 @@ const Navbar = () => {
             </a>
           ))}
           <a href="#admissions" className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold gradient-primary text-primary-foreground shadow hover:opacity-90 transition-opacity">
-            Apply Now
+            {t("nav.applyNow")}
           </a>
           <LanguageSelector />
         </div>
@@ -89,7 +91,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a href="#admissions" onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold gradient-primary text-primary-foreground shadow mt-2">
-                Apply Now
+                {t("nav.applyNow")}
               </a>
             </div>
           </motion.div>
