@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Instagram, Facebook, Image, Video, X, Heart, ExternalLink, RefreshCw, Loader2 } from "lucide-react";
+import { Instagram, Facebook, Image, Video, Heart, ExternalLink, RefreshCw, Loader2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -11,20 +12,21 @@ import campusVideo from "@/assets/gokuldham-aerial.mp4";
 
 type SocialPost = Tables<"social_posts">;
 
-const filterTabs = [
-  { key: "all", label: "All", icon: null },
-  { key: "instagram", label: "Instagram", icon: Instagram },
-  { key: "facebook", label: "Facebook", icon: Facebook },
-  { key: "photo", label: "Photos", icon: Image },
-  { key: "video", label: "Videos", icon: Video },
-] as const;
-
-type FilterKey = (typeof filterTabs)[number]["key"];
+type FilterKey = "all" | "instagram" | "facebook" | "photo" | "video";
 
 const SocialFeedSection = () => {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
   const [selectedPost, setSelectedPost] = useState<SocialPost | null>(null);
   const [visibleCount, setVisibleCount] = useState(12);
+
+  const filterTabs: { key: FilterKey; label: string; icon: typeof Instagram | null }[] = [
+    { key: "all", label: t("social.filters.all"), icon: null },
+    { key: "instagram", label: t("social.filters.instagram"), icon: Instagram },
+    { key: "facebook", label: t("social.filters.facebook"), icon: Facebook },
+    { key: "photo", label: t("social.filters.photos"), icon: Image },
+    { key: "video", label: t("social.filters.videos"), icon: Video },
+  ];
 
   const { data: posts = [], isLoading, error } = useQuery({
     queryKey: ["social-posts"],
