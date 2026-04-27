@@ -63,12 +63,10 @@ const Navbar = () => {
           <a href="#admissions" className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold gradient-primary text-primary-foreground shadow hover:opacity-90 transition-opacity">
             {t("nav.applyNow")}
           </a>
-          <LanguageSelector />
         </div>
 
         {/* Mobile right side */}
         <div className="md:hidden flex items-center gap-2">
-          <LanguageSelector />
           <button className="p-2 text-foreground" onClick={() => setOpen(!open)}>
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
