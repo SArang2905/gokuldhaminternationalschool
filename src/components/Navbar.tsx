@@ -95,6 +95,13 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Floating language selector below navbar */}
+      <div className="absolute right-3 md:right-6 top-full mt-2 z-40">
+        <div className="rounded-full bg-background/90 backdrop-blur-md border border-border/60 shadow-md px-2 py-1">
+          <LanguageSelector />
+        </div>
+      </div>
     </nav>
   );
 };
